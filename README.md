@@ -9,15 +9,21 @@
 4) Foreach link in list of links:
 
     1) parse start and end rooms
+
     2) add end room to start bucket
+
     3) add start room to end bucket
 
 5) Foreach curr_room in list of rooms:
 
     1) create pathway through curr_room, from start to end, by creating two lists that share only curr_room
+
     2) create two paths - one starting at curr_room[0] and one starting at curr_room[1]
+
     3) continue down each path using the first available room for each.
+
     4) if one path hits a start or end flag, set the corresponding flag
+
     5) if no more rooms available, start backtracking, and set invalid flag for last visited room.
 
 5) Foreach curr_room in list of rooms:
