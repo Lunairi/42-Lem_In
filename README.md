@@ -27,21 +27,37 @@
 6) while #ants > 0 && received_ants != orig_#_ants
 
     1) Check ant_flags of all rooms connected to start room
+
       1) if any unset
+
         1) set, and subtract from #_ants
+
       2) else
+
         1) foreach room in curr_room's rooms
+
           1) check if room has unset ant_flags
+
             1) if room has unset ant_flag
+
               1) move ant to next room
+
               2) go back and move all previous ants.
+
           2) if room is exit
+
             1) add all ants in ants queue to received_ants
+
             2) empty ants queue
+
             3) move ants
+
             4) go back and move all previous ants
+
           3) else
+
             1) start loop on next room.
+
     2) take snapshot, print out.
 
 <!--
