@@ -28,7 +28,7 @@ $(NAME): $(OBJ)
 	gcc $(CFLAG) $(LFLAG) $(FFLAG) -L minilibx -lmlx -L libft -lft -I libft -I includes $^ -o $(NAME)
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Created lem_in"
 
-./objects/%.o: ./sources/%.c
+./objects/%.o: ./src/%.c
 	mkdir -p objects
 	gcc $(IFLAG) -c $< -o $@
 
