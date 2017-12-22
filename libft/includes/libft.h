@@ -194,6 +194,9 @@ int					ft_min(int a, int b);
 
 long long			ft_atoll(const char *str);
 
+void				ft_strmcat(char *s1, char *s2, unsigned int *size,
+						unsigned int buf);
+
 /*
 **	Get_next_line
 */

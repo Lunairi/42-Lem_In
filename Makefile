@@ -17,7 +17,7 @@ OBJ 	= $(addprefix ./objects/, $(SRC:.c=.o))
 CFLAG	= -Wall -Wextra -Werror -g
 LFLAG	= -L minilibx ./libft/libft.a -lmlx
 FFLAG	= -framework OpenGL -framework AppKit
-IFLAG	= -I minilibx -I libft -I includes -g
+IFLAG	= -I minilibx -I libft/includes -I includes -g
 
 .SILENT:
 
@@ -25,7 +25,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	gcc $(CFLAG) $(LFLAG) $(FFLAG) -L minilibx -lmlx -L libft -lft -I libft -I includes $^ -o $(NAME)
+	gcc $(CFLAG) $(LFLAG) $(FFLAG) -L minilibx -lmlx -L libft -lft -I libft/includes -I includes $^ -o $(NAME)
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Created lem_in"
 
 ./objects/%.o: ./src/%.c
