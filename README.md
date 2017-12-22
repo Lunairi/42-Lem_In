@@ -34,6 +34,12 @@
                             1) start loop on next room.
         2) take snapshot, print out.
 
+# To Do:
+
+    1) Parser
+    2) Struct methods
+    3) Hash function  
+
 <!--
     1) start-list
       1) init start-list(curr_room)
