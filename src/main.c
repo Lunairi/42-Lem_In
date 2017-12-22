@@ -6,17 +6,52 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2017/11/28 17:43:16 by mlu              ###   ########.fr       */
+/*   Updated: 2017/12/21 21:19:17 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	parse_input(char *str)
+void		parse_room(char *str, t_room *room)
 {
-	/*
-	** parse shit here
-	*/
+	char		*x;
+	char		*y;
+
+	if (x = ft_strchr(str, ' '))
+	{
+		if (y = ft_strchr(x, ' '))
+		{
+			room->name = ft_strsub(str, 0, x - str);
+			room->x = ft_atoi(x);
+			room->y = ft_atoi(y);
+		}
+	}
+}
+
+void		parse_links(char *str, t_link *link)
+{
+	char		*e;
+
+	if ((e = ft_strchr(str, '-')))
+	{
+		link->start = ft_strsub(str, 0, e - str);
+		link->end = ft_strdup(e + 1);
+	}
+}
+
+void		parse_comment(char *str, t_room *room)
+{
+	if (*str == '#')
+	{
+		if (*(str + 1) == '#')
+		{
+			if (ft_strcmp(str, "##end"))
+				room->flag = 2;
+			else if (ft_strcmp(str, "##start"))
+				room->flag = 1;
+		}
+		free(str);
+	}
 }
 
 /*
@@ -26,18 +61,42 @@ void	parse_input(char *str)
 ** a backup string of the input (aka output), or if we parse everything
 ** from input in GNL first and we don't need output
 */
-int		main(void)
-{
-	char	*input;
-	char	*output;
 
-	output = ft_memalloc(sizeof(char));
-	while (get_next_line(0, &input))
+int			validate_ants(void)
+{
+	char		*str_cpy;
+	char		*str;
+
+	while (get_next_line(0, &str))
 	{
-		output = ft_strjoinfree(output, input);
-		output = ft_strjoinfree(output, ft_strdup("\n"));
-		parse_input(input);
+		if (!str)
+			return (-1);
+		str_cpy = str;
+		while (*str)
+		{
+			if (!ft_isdigit(*str))
+				break ;
+			++str;
+		}
+		if (!*str)
+			break ;
 	}
-	printf("%s", output);
+	return (ft_atoi(str_cpy));
+}
+
+int			main(void)
+{
+	char		*str;
+	int			n_ants;
+	t_room		room;
+	t_link		link;
+
+	n_ants = validate_ants();
+	while (get_next_line(0, &str) && n_ants != -1)
+	{
+		parse_comment(str, &room);
+		parse_room(str, &room);
+		parse_links(str, &link);
+	}
 	return (0);
 }

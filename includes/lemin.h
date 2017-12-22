@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2017/12/21 17:01:55 by anazar           ###   ########.fr       */
+/*   Updated: 2017/12/21 18:18:09 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@
 
 # include "mlx.h"
 # include "libft.h"
+
+typedef struct		s_room_info
+{
+	char			*name;
+	int				x;
+	int				y;
+	int				flag;
+}					t_room;
+
+typedef struct		s_link_info
+{
+	t_room			start;
+	t_room			end;
+}					t_link;
 
 typedef struct		s_node {
 	int				num;
