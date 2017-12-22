@@ -12,42 +12,32 @@
 
 #include "lemin.h"
 
-char	*read_input(int fd)
+void	parse_input(char *str)
 {
-	char			*temp;
-	char			*output;
-	char			input[BUF_SIZE + 1];
-	unsigned int	memory;
-
-	memory = 0;
-	temp = (char*)malloc(sizeof(*output) * (memory + 1));
-	output = (char*)malloc(sizeof(*output) * (memory + 1));
-	while ((read(fd, input, BUF_SIZE)) > 0)
-	{
-		memory += BUF_SIZE;
-		ft_strcpy(temp, output);
-		free(output);
-		output = (char*)malloc(sizeof(*output) * (memory + 1));
-		ft_strcpy(output, temp);
-		ft_strmcat(output, input, &memory, BUF_SIZE);
-		output[memory] = '\0';
-		free(temp);
-		temp = (char*)malloc(sizeof(*temp) * (memory + 1));
-	}
-	free(temp);
-	return (output);
+	/*
+	** parse shit here
+	*/
 }
 
-int		main(int ac, char **av)
+/*
+** Idea is to use GNL to take the input and store it into output
+** However, if we parse the information while in GNL we may not need
+** output, but for now we will leave until we decide if we should have
+** a backup string of the input (aka output), or if we parse everything
+** from input in GNL first and we don't need output
+*/
+int		main(void)
 {
 	char	*input;
+	char	*output;
 
-	if (ac != 2)
+	output = ft_memalloc(sizeof(char));
+	while (get_next_line(0, &input))
 	{
-		ft_putstr("error\n");
-		return (0);
+		output = ft_strjoinfree(output, input);
+		output = ft_strjoinfree(output, ft_strdup("\n"));
+		parse_input(input);
 	}
-	input = read_input(open(av[1], O_RDONLY));
-	printf("Input file %s", input);
+	printf("%s", output);
 	return (0);
 }
