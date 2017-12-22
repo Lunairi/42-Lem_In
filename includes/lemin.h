@@ -56,4 +56,14 @@ typedef struct		s_row {
 	t_node			*links;
 }					t_row;
 
+typedef struct		s_visual {
+	void			*mlx;
+	void			*win;
+	void			*img;
+	int				*pix;
+	int				bits;
+	int				s_line;
+	int				endian;
+}					t_visual;
+
 #endif
