@@ -18,23 +18,10 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include <sys/ioctl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <sys/stat.h>
-# include <sys/xattr.h>
-# include <sys/acl.h>
-# include <dirent.h>
-# include <pwd.h>
-# include <grp.h>
-# include <time.h>
-# include <errno.h>
 # include <string.h>
 # include <pthread.h>
 
 # include "mlx.h"
 # include "libft.h"
-
-# define BUF_SIZE 1
 
 #endif
