@@ -67,7 +67,7 @@
 
 # Hash function notes:
 
-1) possible implementations:  
+    1) possible implementations:
 
 <!--
     1) start-list
