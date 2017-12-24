@@ -1,6 +1,31 @@
 # Algorithm
 
     1) Read + Parse room information
+        1) use GNL to read lines.
+        2) GNL until a line of format "%d" is found, then ft_atoi this value into an integer. These are our ants
+        3) next, use GNL in a loop to read room information.
+            1) if line[0] == #
+                1) if line[1] == #
+                    1) set start or end flag
+                2) free and get_next_line
+            2) else
+                1) if line in format "%s %d %d"
+                    1) create new linked list node. parse line into node.name, node.x, node.y
+                    2) add to end of list.
+                2) else
+                    1) if line in format "%d-%d"
+                        1) create hash table from linked list
+                        2) free linked list?
+                        3) add link to hash table
+                        4) free line
+                        5) break loop
+        4) next, use GNL in a loop to read link info
+            1) if (line[0] == #)
+                1) free and get_next_line
+            2) else
+                1) if line in format "%d %d"
+                    1) add to hash table
+                2) free line
     2) Initialize array of linked list nodes with size = # rooms.
     3) Hash each room and generate unique index within range (0 - #rooms - 1)
     4) Foreach link in list of links:
@@ -38,7 +63,11 @@
 
     1) Parser
     2) Struct methods
-    3) Hash function  
+    3) Hash function
+
+# Hash function notes:
+
+1) possible implementations:  
 
 <!--
     1) start-list
