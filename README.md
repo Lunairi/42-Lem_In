@@ -67,7 +67,32 @@
 
 # Hash function notes:
 
-    1) possible implementations:
+    1) possible implementations:  
+        1) use the values of each character in the name as a number in base 128 (ie, str[0] + str[1] * 128 + str[2] * 128 ** 2 ...)
+            1) pros:
+                1) Provided that the strings are different enough, the values are guaranteed to be unique.
+            2) cons
+                1) can only process 4 characters in this manner
+                2) must allocate MUCH more memory than necessary in order to use the hash values effectively without additional processing.
+        2) similar to 1, but instead of using all characters 0 - 127, create a null-terminated string of characters that appear in room names, then use the size of the array as the base
+            1) pros:
+                1) average-case range should allow for significantly improved process length.
+                2) hash values still guaranteed to be unique
+            2) cons:
+                1) worst case range is still the same as 1)
+                2) still have to allocate a lot of space in order to use hash values effectively
+        3) Use modified Huffman coding algorithm to generate hash values based on frequency of characters in list of names
+            1) pros:
+                1) Should compress range down even more
+            2) cons:
+                1) Still no effective way to use hash values as indices.
+        1) Create an n-ary tree from the room names
+            1) pros:
+                1) If done correctly, should be able to generate correct range from 0 - #rooms - 1
+                2) should be reasonably fast
+            2) cons
+                1) Will require persistent storage - n-ary tree cannot be deleted until after all ants go through
+                2) have to create an n-ary tree.
 
 <!--
     1) start-list
