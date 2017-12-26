@@ -59,6 +59,25 @@
                             1) start loop on next room.
         2) take snapshot, print out.
 
+# Visualizer
+
+    1) Parse the data struct information previously from algorithm and data storage
+    2) Initialize mlx struct and window and image through mlx library
+    3) Parse out room name, x and y coord
+    4) Draw the node using name, x and y coord
+        1) Setup additional variables for translation and zoom
+        2) Zoom in/out will have a min/max value
+        3) Each node will have a set size value that can be manipulated for zoom
+            1) To avoid collision between nodes they have a certain area size designated 
+            2) Inside those designated area size they will be drawned smaller (like collision area)
+        4) Each node will display the room name (based off the input), as well as X and Y before modification
+    5) Using bresenghem connect the center of each node to eachother based off linked rooms
+        1) Linked room information is noted from parsed room data
+    6) Draw ants that will traverse the nodes
+        1) Ants movement will be draw moving through the lines done through bresenghem
+        2) It will be linked with how data is processed through the lem_in program
+        3) As ants move image will be redrawn repeatedly
+
 # To Do:
 
     1) Parser
