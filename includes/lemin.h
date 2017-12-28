@@ -24,6 +24,15 @@
 # include "mlx.h"
 # include "libft.h"
 
+# define ZOOM_OUT 69
+# define ZOOM_IN 78
+# define MOVE_LEFT 86
+# define MOVE_RIGHT 88
+# define MOVE_DOWN 84
+# define MOVE_UP 91
+# define RESET_MLX 87
+# define EXIT_MLX 53
+
 typedef struct			s_room_info
 {
 	char				*name;
@@ -64,6 +73,9 @@ typedef struct			s_visual
 	int					bits;
 	int					s_line;
 	int					endian;
+	int					zoom;
+	int					x;
+	int					y;
 }						t_visual;
 
 typedef struct			s_lemin
