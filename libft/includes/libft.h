@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anazar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 10:14:28 by anazar            #+#    #+#             */
-/*   Updated: 2017/09/27 13:54:19 by anazar           ###   ########.fr       */
+/*   Updated: 2017/12/26 15:42:09 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # define BUFF_SIZE 100
+# define DBG_INT(str, x) ft_putstr(str); ft_putnbr(x); ft_putchar('\n');
+# define DBG_CHAR(str, x) ft_putstr(str); ft_putchar(x); ft_putchar('\n');
+# define MIN(x, y) (x < y ? x : y )
+# define MAX(x, y) (x >= y ? x : y)
+# define ABS(x) (x >= 0 ? x : -x)
+# define PI 3.141592653
+# define POW(x, y, o) o = x; int p_it = 0; while(++p_it < y) o *= x;
+# define AVG(x, y) ((x + y) / 2.0)
+# define SWITCH(a, b) if (a) b;
+# define CASE(a, b) else if (a) b;
+# define DEFAULT(a) else a;
 
 # include <string.h>
 # include <stdlib.h>
@@ -188,14 +199,9 @@ void				ft_strfncpy(char *dst, char *src, int len);
 
 void				ft_strrncpy(char *dst, char *src, int len);
 
-int					ft_max(int a, int b);
-
-int					ft_min(int a, int b);
-
 long long			ft_atoll(const char *str);
 
-void				ft_strmcat(char *s1, char *s2, unsigned int *size,
-						unsigned int buf);
+int					ft_general_validate(char *format, char *str);
 
 /*
 **	Get_next_line

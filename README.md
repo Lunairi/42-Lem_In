@@ -9,11 +9,11 @@
                     1) set start or end flag
                 2) free and get_next_line
             2) else
-                1) if line in format "%s %d %d"
+                1) if line in format "%s %d %d", with no 'L's or '-'s
                     1) create new linked list node. parse line into node.name, node.x, node.y
                     2) add to end of list.
                 2) else
-                    1) if line in format "%d-%d"
+                    1) if line in format "%s-%s"
                         1) create hash table from linked list
                         2) free linked list?
                         3) add link to hash table
@@ -68,7 +68,7 @@
         1) Setup additional variables for translation and zoom
         2) Zoom in/out will have a min/max value
         3) Each node will have a set size value that can be manipulated for zoom
-            1) To avoid collision between nodes they have a certain area size designated 
+            1) To avoid collision between nodes they have a certain area size designated
             2) Inside those designated area size they will be drawned smaller (like collision area)
         4) Each node will display the room name (based off the input), as well as X and Y before modification
     5) Using bresenghem connect the center of each node to eachother based off linked rooms
@@ -86,7 +86,7 @@
 
 # Hash function notes:
 
-    1) possible implementations:  
+    1) possible implementations:
         1) use the values of each character in the name as a number in base 128 (ie, str[0] + str[1] * 128 + str[2] * 128 ** 2 ...)
             1) pros:
                 1) Provided that the strings are different enough, the values are guaranteed to be unique.
