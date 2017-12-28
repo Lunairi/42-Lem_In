@@ -13,7 +13,7 @@
 #include "lemin.h"
 
 // mlx_do_sync(visual->mlx);
-// mlx_hook(draw->win, 3, (1L << 0), hook_event, draw);
+// mlx_hook(visual->win, 3, (1L << 0), hook_event, visual);
 
 int		hook_event(int key, t_visual *visual)
 {

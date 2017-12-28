@@ -40,6 +40,8 @@ void	init_visual(t_visual *visual)
 ** translation variable when we are attempting to set a hex value
 ** at the address of the image. These translation values are not set
 ** before since they can skew the sizing of the nodes.
+** Finally, it only attempts to draw if the translated point is
+** inside the window range.
 */
 void	draw_node(int x, int y, t_visual *visual)
 {
@@ -50,11 +52,12 @@ void	draw_node(int x, int y, t_visual *visual)
 	y2 = y - 10 + visual->zoom;
 	while (x2 < (x + 10 + visual->zoom))
 	{
-		visual->pix[(x2 + visual->x) + ((y2 + visual->y)
-			* visual->s_line / 4)] = 0x303030;
+		if (((x2 + visual->x) >= 0) && ((y2 + visual->y) >= 0))
+			visual->pix[(x2 + visual->x) + ((y2 + visual->y)
+				* visual->s_line / 4)] = 0x303030;
 		if (++y2 > (y + 10 + visual->zoom))
 		{
-			y2 = y - 10;
+			y2 = y - 10 + visual->zoom;
 			x2++;
 		}
 	}
