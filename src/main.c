@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2017/12/27 21:21:02 by anazar           ###   ########.fr       */
+/*   Updated: 2017/12/27 21:43:38 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void		parse_room(char *str, t_room *room)
 	char		*x;
 	char		*y;
 
-	if (x = ft_strchr(str, ' '))
+	if ((x = ft_strchr(str, ' ')))
 	{
-		if (y = ft_strchr(x, ' '))
+		if ((y = ft_strchr(x, ' ')))
 		{
 			room->name = ft_strsub(str, 0, x - str);
 			room->x = ft_atoi(x);
@@ -28,14 +28,15 @@ void		parse_room(char *str, t_room *room)
 	}
 }
 
-void		parse_links(char *str, t_link *link)
+void		parse_links(char *str, t_lemin *link)
 {
-	char		*e;
+	char		*r2;
+	char		*r1;
 
-	if ((e = ft_strchr(str, '-')))
+	if ((r2 = ft_strchr(str, '-')))
 	{
-		link->start = ft_strsub(str, 0, e - str);
-		link->end = ft_strdup(e + 1);
+		r1 = ft_strsub(str, 0, r2 - str);
+		add_to_tree(link, r1, r2);
 	}
 }
 
@@ -50,7 +51,7 @@ void		parse_comment(char *str, t_room *room)
 			else if (ft_strcmp(str, "##start"))
 				room->flag = 1;
 		}
-		free(str);
+		ft_strdel(&str);
 	}
 }
 
@@ -94,7 +95,8 @@ int			main(void)
 			parse_room(str, &room);
 		if (ft_general_validate(str, "%d-%d"))
 		{
-			lemin.table = (t_row *)ft_memalloc(list_len(lemin.rooms) * sizeof(t_row));
+			lemin.table = (t_row *)ft_memalloc(list_len(lemin.rooms) *
+				sizeof(t_row));
 			parse_link(str, &lemin);
 			ft_strdel(&str);
 			break ;

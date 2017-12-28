@@ -84,6 +84,15 @@
     2) Struct methods
     3) Hash function
 
+    These functions:
+
+        add_to_tree(t_lemin \*lemin, char \*r1, char \*r2);
+        error(char \*str);
+        t_room new_room(void);
+        list_len(t_room \*room);
+        parse_link(char \*str, t_lemin \*lemin);
+        add_to_rooms(t_room *rooms, t_room room);    
+
 # Hash function notes:
 
     1) possible implementations:

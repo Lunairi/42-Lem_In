@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2017/12/27 20:19:14 by anazar           ###   ########.fr       */
+/*   Updated: 2017/12/27 21:45:35 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ typedef struct			s_room_info
 	int					flag;
 	struct s_room_info	*next;
 }						t_room;
-
-typedef struct			s_lemin
-{
-	t_room				*rooms;
-}						t_lemin;
 
 typedef struct			s_node
 {
@@ -70,5 +65,12 @@ typedef struct			s_visual
 	int					s_line;
 	int					endian;
 }						t_visual;
+
+typedef struct			s_lemin
+{
+	t_room				*rooms;
+	t_row				*table;
+	t_visual			vis;
+}						t_lemin;
 
 #endif
