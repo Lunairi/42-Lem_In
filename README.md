@@ -86,12 +86,6 @@
 
     These functions:
 
-        void add_to_tree(t_lemin *lemin, char *r1, char *r2);
-        void error(char *str);
-        t_room new_room(void);
-        size_t list_len(t_room *room);
-        void add_to_rooms(t_room *rooms, t_room room);
-
 # Hash function notes:
 
     1) possible implementations:

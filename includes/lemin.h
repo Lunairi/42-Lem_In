@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/01 12:24:11 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/01 15:13:17 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct			s_room_info
 
 typedef struct			s_node
 {
-	int					num;
+	size_t				num;
 	struct s_node		*next;
 }						t_node;
 
@@ -58,8 +58,7 @@ typedef struct			s_queue
 typedef struct			s_row
 {
 	int					checked;
-	int					is_start;
-	int					is_end;
+	int					flag;
 	t_node				*links;
 	t_queue				*ants;
 }						t_row;
@@ -85,10 +84,12 @@ typedef struct			s_lemin
 	t_visual			vis;
 }						t_lemin;
 
-void 	add_to_tree(t_lemin *lemin, char *r1, char *r2);
+void 	add_to_table(t_lemin *lemin, char *r1, char *r2);
 void 	error(char *str);
 t_room	new_room(void);
 size_t	list_len(t_room *room);
-void 	add_to_rooms(t_room *rooms, t_room room);
+void 	add_to_rooms(t_room *rooms, t_room *room);
+void 	add_node(t_node *list, t_node *node);
+size_t	hash(t_lemin *lemin, char *str, int *flag);
 
 #endif

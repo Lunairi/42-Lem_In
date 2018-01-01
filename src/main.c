@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/01 12:20:23 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/01 15:12:35 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		parse_link(char *str, t_lemin *lemin)
 	if ((r2 = ft_strchr(str, '-')))
 	{
 		r1 = ft_strsub(str, 0, r2 - str);
-		add_to_tree(lemin, r1, r2);
+		add_to_table(lemin, r1, r2);
 	}
 }
 
@@ -101,7 +101,7 @@ int			main(void)
 			ft_strdel(&str);
 			break ;
 		}
-		add_to_rooms(lemin.rooms, room);
+		add_to_rooms(lemin.rooms, &room);
 		ft_strdel(&str);
 	}
 	while (get_next_line(0, &str))

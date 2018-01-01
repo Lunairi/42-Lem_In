@@ -1,45 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   room_list_utils.c                                  :+:      :+:    :+:   */
+/*   add_to_table.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/01 12:10:14 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/01 15:12:02 by anazar           ###   ########.fr       */
+/*   Created: 2018/01/01 13:16:36 by anazar            #+#    #+#             */
+/*   Updated: 2018/01/01 15:09:47 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-t_room	new_room(void)
+void 	mod(t_row *row, size_t to_add)
 {
-	t_room	new;
+	t_node	node;
 
-	new.name = NULL;
-	new.x = 0;
-	new.y = 0;
-	new.flag = 0;
-	new.next = NULL;
-	return (new);
+	node.num = to_add;
+	node.next = NULL;
+	add_node(row->links, &node);
 }
 
-size_t	list_len(t_room *room)
+void 	add_to_table(t_lemin *lemin, char *r1, char *r2)
 {
-	size_t	i;
+	size_t	r1_i;
+	size_t	r2_i;
+	int		flag1;
+	int		flag2;
 
-	i = 0;
-	while (room)
-	{
-		room = room->next;
-		++i;
-	}
-	return (i);
-}
-
-void	add_to_rooms(t_room *rooms, t_room *room)
-{
-	while (rooms && rooms->next)
-		rooms = rooms->next;
-	rooms->next = room;
+	r1_i = hash(lemin, r1, &flag1);
+	r2_i = hash(lemin, r2, &flag2);
+	lemin->table[r1_i].flag = flag1;
+	lemin->table[r2_i].flag = flag2;
+	mod(&lemin->table[r1_i], r2_i);
+	mod(&lemin->table[r2_i], r1_i);
 }

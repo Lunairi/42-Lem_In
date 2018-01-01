@@ -1,45 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   room_list_utils.c                                  :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/01 12:10:14 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/01 15:12:02 by anazar           ###   ########.fr       */
+/*   Created: 2018/01/01 13:19:45 by anazar            #+#    #+#             */
+/*   Updated: 2018/01/01 14:06:15 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-t_room	new_room(void)
+size_t      hash(t_lemin *lemin, char *str, int *flag)
 {
-	t_room	new;
+    size_t  i;
+    t_room  *room;
 
-	new.name = NULL;
-	new.x = 0;
-	new.y = 0;
-	new.flag = 0;
-	new.next = NULL;
-	return (new);
-}
-
-size_t	list_len(t_room *room)
-{
-	size_t	i;
-
-	i = 0;
-	while (room)
-	{
-		room = room->next;
-		++i;
-	}
-	return (i);
-}
-
-void	add_to_rooms(t_room *rooms, t_room *room)
-{
-	while (rooms && rooms->next)
-		rooms = rooms->next;
-	rooms->next = room;
+    i = 0;
+    room = lemin->rooms;
+    while (room && ft_strcmp(room->name, str))
+    {
+        room = room->next;
+        ++i;
+    }
+    *flag = room->flag;
+    return (i);
 }
