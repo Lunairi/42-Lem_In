@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min.c                                           :+:      :+:    :+:   */
+/*   validation_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anazar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/18 23:06:21 by anazar            #+#    #+#             */
-/*   Updated: 2017/08/18 23:06:58 by anazar           ###   ########.fr       */
+/*   Created: 2018/01/01 12:35:22 by anazar            #+#    #+#             */
+/*   Updated: 2018/01/01 12:37:12 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <lemin.h>
 
-int		ft_min(int a, int b)
+void 	error(char	*str)
 {
-	if (a > b)
-		return (b);
-	else
-		return (a);
+	ft_putendl(str);
+	exit(1);
 }

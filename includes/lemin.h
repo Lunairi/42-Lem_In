@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2017/12/27 21:45:35 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/01 12:24:11 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,11 @@ typedef struct			s_lemin
 	t_row				*table;
 	t_visual			vis;
 }						t_lemin;
+
+void 	add_to_tree(t_lemin *lemin, char *r1, char *r2);
+void 	error(char *str);
+t_room	new_room(void);
+size_t	list_len(t_room *room);
+void 	add_to_rooms(t_room *rooms, t_room room);
 
 #endif

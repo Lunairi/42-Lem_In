@@ -12,7 +12,7 @@
 
 NAME	= lem_in
 
-SRC		= main.c
+SRC		= main.c room_list_utils.c validation_utils.c
 OBJ 	= $(addprefix ./objects/, $(SRC:.c=.o))
 CFLAG	= -Wall -Wextra -Werror -g
 LFLAG	= -L minilibx ./libft/libft.a -lmlx

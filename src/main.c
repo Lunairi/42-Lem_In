@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2017/12/21 21:19:17 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/01 12:20:23 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void		parse_room(char *str, t_room *room)
 	char		*x;
 	char		*y;
 
-	if (x = ft_strchr(str, ' '))
+	if ((x = ft_strchr(str, ' ')))
 	{
-		if (y = ft_strchr(x, ' '))
+		if ((y = ft_strchr(x, ' ')))
 		{
 			room->name = ft_strsub(str, 0, x - str);
 			room->x = ft_atoi(x);
@@ -28,14 +28,15 @@ void		parse_room(char *str, t_room *room)
 	}
 }
 
-void		parse_links(char *str, t_link *link)
+void		parse_link(char *str, t_lemin *lemin)
 {
-	char		*e;
+	char		*r2;
+	char		*r1;
 
-	if ((e = ft_strchr(str, '-')))
+	if ((r2 = ft_strchr(str, '-')))
 	{
-		link->start = ft_strsub(str, 0, e - str);
-		link->end = ft_strdup(e + 1);
+		r1 = ft_strsub(str, 0, r2 - str);
+		add_to_tree(lemin, r1, r2);
 	}
 }
 
@@ -50,11 +51,9 @@ void		parse_comment(char *str, t_room *room)
 			else if (ft_strcmp(str, "##start"))
 				room->flag = 1;
 		}
-		free(str);
+		ft_strdel(&str);
 	}
 }
-
-void	parse_hub(char *str, ...)
 
 /*
 ** Idea is to use GNL to take the input and store it into output
@@ -66,39 +65,52 @@ void	parse_hub(char *str, ...)
 
 int			validate_ants(void)
 {
-	char		*str_cpy;
 	char		*str;
+	int			ants;
 
-	while (get_next_line(0, &str))
-	{
-		if (!str)
-			return (-1);
-		str_cpy = str;
-		while (*str)
-		{
-			if (!ft_isdigit(*str))
-				break ;
-			++str;
-		}
-		if (!*str)
-			break ;
-	}
-	return (ft_atoi(str_cpy));
+	get_next_line(0, &str);
+	if (!ft_general_validate("%d", str))
+		return (-1);
+	ants = ft_atoi(str);
+	ft_strdel(&str);
+	return (ants);
 }
 
 int			main(void)
 {
 	char		*str;
 	int			n_ants;
+	t_lemin		lemin;
 	t_room		room;
-	t_link		link;
 
 	n_ants = validate_ants();
-	while (get_next_line(0, &str) && n_ants != -1)
+	if (n_ants == -1)
+		error("Invalid number. Please provide a valid number of ants");
+	while (get_next_line(0, &str))
 	{
-		parse_comment(str, &room);
-		parse_room(str, &room);
-		parse_links(str, &link);
+		room = new_room();
+		if (ft_general_validate(str, "#%s"))
+			parse_comment(str, &room);
+		if (ft_general_validate(str, "%s %d %d"))
+			parse_room(str, &room);
+		if (ft_general_validate(str, "%d-%d"))
+		{
+			lemin.table = (t_row *)ft_memalloc(list_len(lemin.rooms) *
+				sizeof(t_row));
+			parse_link(str, &lemin);
+			ft_strdel(&str);
+			break ;
+		}
+		add_to_rooms(lemin.rooms, room);
+		ft_strdel(&str);
+	}
+	while (get_next_line(0, &str))
+	{
+		if (ft_general_validate(str, "#%s"))
+			parse_comment(str, &room);
+		if (ft_general_validate(str, "%d-%d"))
+			parse_link(str, &lemin);
+		ft_strdel(&str);
 	}
 	return (0);
 }
