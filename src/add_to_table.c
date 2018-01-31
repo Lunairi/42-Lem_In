@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/01 13:16:36 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/01 15:09:47 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/30 18:23:36 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void 	mod(t_row *row, size_t to_add)
 {
-	t_node	node;
+	t_node	*node;
 
-	node.num = to_add;
-	node.next = NULL;
-	add_node(row->links, &node);
+	node = (t_node *)ft_memalloc(sizeof(t_node));
+	node->num = to_add;
+	node->next = NULL;
+	add_node(row, node);
 }
 
 void 	add_to_table(t_lemin *lemin, char *r1, char *r2)

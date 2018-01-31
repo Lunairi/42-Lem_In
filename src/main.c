@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/01 15:12:35 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/30 18:28:12 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		parse_room(char *str, t_room *room)
 
 	if ((x = ft_strchr(str, ' ')))
 	{
-		if ((y = ft_strchr(x, ' ')))
+		if ((y = ft_strchr(x + 1, ' ')))
 		{
 			room->name = ft_strsub(str, 0, x - str);
 			room->x = ft_atoi(x);
@@ -36,11 +36,11 @@ void		parse_link(char *str, t_lemin *lemin)
 	if ((r2 = ft_strchr(str, '-')))
 	{
 		r1 = ft_strsub(str, 0, r2 - str);
-		add_to_table(lemin, r1, r2);
+		add_to_table(lemin, r1, r2 + 1);
 	}
 }
 
-void		parse_comment(char *str, t_room *room)
+char		*parse_comment(char *str, t_room *room)
 {
 	if (*str == '#')
 	{
@@ -52,7 +52,9 @@ void		parse_comment(char *str, t_room *room)
 				room->flag = 1;
 		}
 		ft_strdel(&str);
+		get_next_line(0, &str);
 	}
+	return (str);
 }
 
 /*
@@ -76,41 +78,55 @@ int			validate_ants(void)
 	return (ants);
 }
 
+t_lemin		init_lemin(void)
+{
+	t_lemin	l;
+
+	l.rooms = NULL;
+	l.table = NULL;
+	//init visualizer
+	l.len = 0;
+	return (l);
+}
+
 int			main(void)
 {
 	char		*str;
 	int			n_ants;
 	t_lemin		lemin;
-	t_room		room;
+	t_room		*room;
 
+	lemin = init_lemin();
 	n_ants = validate_ants();
 	if (n_ants == -1)
 		error("Invalid number. Please provide a valid number of ants");
 	while (get_next_line(0, &str))
 	{
 		room = new_room();
-		if (ft_general_validate(str, "#%s"))
-			parse_comment(str, &room);
-		if (ft_general_validate(str, "%s %d %d"))
-			parse_room(str, &room);
-		if (ft_general_validate(str, "%d-%d"))
+		if (ft_general_validate("#%s", str))
+			str = parse_comment(str, room);
+		if (ft_general_validate("%s %d %d", str))
+			parse_room(str, room);
+		if (ft_general_validate("%d-%d", str))
 		{
-			lemin.table = (t_row *)ft_memalloc(list_len(lemin.rooms) *
-				sizeof(t_row));
+			lemin.len = list_len(lemin.rooms);
+			lemin.table = (t_row *)ft_memalloc(lemin.len * sizeof(t_row));
 			parse_link(str, &lemin);
 			ft_strdel(&str);
 			break ;
 		}
-		add_to_rooms(lemin.rooms, &room);
+		add_to_rooms(&lemin, room);
+		//print_rooms(lemin.rooms);
 		ft_strdel(&str);
 	}
 	while (get_next_line(0, &str))
 	{
-		if (ft_general_validate(str, "#%s"))
-			parse_comment(str, &room);
-		if (ft_general_validate(str, "%d-%d"))
+		if (ft_general_validate("#%s", str))
+			str = parse_comment(str, room);
+		if (ft_general_validate("%d-%d", str))
 			parse_link(str, &lemin);
 		ft_strdel(&str);
 	}
+	print_table(lemin.table, lemin.len);
 	return (0);
 }
