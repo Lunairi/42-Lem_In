@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/30 18:28:12 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/30 20:56:04 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char		*parse_comment(char *str, t_room *room)
 	{
 		if (*(str + 1) == '#')
 		{
-			if (ft_strcmp(str, "##end"))
+			if (!ft_strcmp(str, "##end"))
 				room->flag = 2;
-			else if (ft_strcmp(str, "##start"))
+			else if (!ft_strcmp(str, "##start"))
 				room->flag = 1;
 		}
 		ft_strdel(&str);
@@ -111,6 +111,8 @@ int			main(void)
 		{
 			lemin.len = list_len(lemin.rooms);
 			lemin.table = (t_row *)ft_memalloc(lemin.len * sizeof(t_row));
+			//lemin.names = get_names(&lemin);
+			get_names(&lemin);
 			parse_link(str, &lemin);
 			ft_strdel(&str);
 			break ;
@@ -127,6 +129,7 @@ int			main(void)
 			parse_link(str, &lemin);
 		ft_strdel(&str);
 	}
-	print_table(lemin.table, lemin.len);
+	//print_table(lemin.table, lemin.len);
+	print_table(lemin);
 	return (0);
 }
