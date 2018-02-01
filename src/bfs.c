@@ -41,6 +41,7 @@ t_node	*bfs(t_lemin *lemin)
     start = lemin->start;
     lemin->table[start].checked = 1;
     queue = init();
+    path = NULL;
     enqueue(queue, start);
     while (!isEmpty(queue))
     {
@@ -56,6 +57,7 @@ t_node	*bfs(t_lemin *lemin)
                 lemin->table[start].checked = 1;
                 enqueue(queue, start);
             }
+            tmp = tmp->next;
         }
     }
     return (path);

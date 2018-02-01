@@ -19,9 +19,9 @@ void	draw_color(int x, int y)
 
 void	draw_segment(int x, int y, int p, int swap)
 {
-	int i = 0;
+	int i = -1;
 	
-	while (i++ < x)
+	while (++i < x)
 	{
 		draw_color(x, y);
 		while (p >= 0)
