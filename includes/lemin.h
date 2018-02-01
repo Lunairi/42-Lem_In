@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/30 21:15:07 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 14:30:22 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct			s_lemin
 	char				**names;
 	t_row				*table;
 	t_visual			vis;
+	size_t				start;
+	size_t				end;
 	size_t				len;
 }						t_lemin;
 
@@ -98,5 +100,6 @@ size_t	hash(t_lemin *lemin, char *str, int *flag);
 //void 	print_table(t_row *table, size_t len);
 void 	print_table(t_lemin *lemin);
 void 	get_names(t_lemin *lemin);
+t_node	*bfs(t_lemin *lemin);
 
 #endif

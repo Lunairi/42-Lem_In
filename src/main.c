@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/30 22:40:35 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 16:49:30 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int			main(void)
 		{
 			lemin.len = list_len(lemin.rooms);
 			lemin.table = (t_row *)ft_memalloc(lemin.len * sizeof(t_row));
-			//lemin.names = get_names(&lemin);
 			get_names(&lemin);
 			parse_link(str, &lemin);
 			ft_strdel(&str);
@@ -137,7 +136,7 @@ int			main(void)
 			parse_link(str, &lemin);
 		ft_strdel(&str);
 	}
-	//print_table(lemin.table, lemin.len);
 	print_table(&lemin);
+	bfs(&lemin);
 	return (0);
 }

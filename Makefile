@@ -12,8 +12,9 @@
 
 NAME	= lem_in
 
-SRC		= main.c room_list_utils.c validation_utils.c add_to_table.c hash.c \
-			node_utils.c print_table.c get_names.c
+FILES	= main room_list_utils validation_utils add_to_table hash \
+			node_utils print_table get_names bfs queue_utils
+SRC		= $(patsubst %, %.c, $(FILES))
 OBJ 	= $(addprefix ./objects/, $(SRC:.c=.o))
 CFLAG	= -Wall -Wextra -Werror -g
 LFLAG	= -L minilibx ./libft/libft.a -lmlx
