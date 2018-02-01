@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/31 14:30:22 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 17:27:58 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,10 @@ size_t	hash(t_lemin *lemin, char *str, int *flag);
 void 	print_table(t_lemin *lemin);
 void 	get_names(t_lemin *lemin);
 t_node	*bfs(t_lemin *lemin);
+
+void enqueue(struct s_queue *queue, size_t num);
+size_t dequeue(struct s_queue *queue);
+int isEmpty(struct s_queue *queue);
+struct s_queue *init(void);
 
 #endif

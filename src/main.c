@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/31 16:49:30 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 17:31:57 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,24 @@ void print_rooms(t_room *rooms)
 	}
 }
 
+void	find_start_end(t_lemin *lemin)
+{
+	t_room *tmp;
+	size_t i;
+
+	i = 0;
+	tmp = lemin->rooms;
+	while (tmp)
+	{
+		if (tmp->flag == 1)
+			lemin->start = i;
+		else if (tmp->flag == 2)
+			lemin->end = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
+
 int			main(void)
 {
 	char		*str;
@@ -136,6 +154,7 @@ int			main(void)
 			parse_link(str, &lemin);
 		ft_strdel(&str);
 	}
+	find_start_end(&lemin);
 	print_table(&lemin);
 	bfs(&lemin);
 	return (0);

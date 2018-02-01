@@ -14,8 +14,6 @@ void enqueue(struct s_queue *queue, size_t num)
 {
 	struct s_node	*new;
 
-    if (!queue)
-        queue = init();
 	new = (struct s_node *)malloc(sizeof(struct s_node));
 	new->num = num;
 	new->next = NULL;

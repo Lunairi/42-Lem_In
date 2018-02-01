@@ -6,17 +6,21 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:13:54 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/31 17:19:03 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 17:27:44 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
-void add_to_path(t_node *path, t_node *node)
+void add_to_path(t_node *path, size_t start)
 {
     t_node	*tmp;
+    t_node  *node;
 
 	tmp = path;
+    node = (t_node *)ft_memalloc(sizeof(t_node));
+    node->num = start;
+    node->next = NULL;
 	if (!tmp)
 	{
 		path = node;
@@ -36,6 +40,7 @@ t_node	*bfs(t_lemin *lemin)
 
     start = lemin->start;
     lemin->table[start].checked = 1;
+    queue = init();
     enqueue(queue, start);
     while (!isEmpty(queue))
     {
