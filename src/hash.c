@@ -12,18 +12,20 @@
 
 #include <lemin.h>
 
-size_t      hash(t_lemin *lemin, char *str, int *flag)
+size_t	hash(t_lemin *lemin, char *str, int *flag)
 {
-    size_t  i;
-    t_room  *room;
+	size_t	i;
+	t_room	*room;
 
-    i = 0;
-    room = lemin->rooms;
-    while (room && ft_strcmp(room->name, str))
-    {
-        room = room->next;
-        ++i;
-    }
-    *flag = room->flag;
-    return (i);
+	i = 0;
+	room = lemin->rooms;
+	while (room && ft_strcmp(room->name, str))
+	{
+		room = room->next;
+		++i;
+	}
+	if (!room)
+		error("Input is invalid");
+	*flag = room->flag;
+	return (i);
 }

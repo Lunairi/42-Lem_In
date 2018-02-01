@@ -12,7 +12,7 @@
 
 #include <lemin.h>
 
-void 	mod(t_row *row, size_t to_add)
+void	mod(t_row *row, size_t to_add)
 {
 	t_node	*node;
 
@@ -22,7 +22,7 @@ void 	mod(t_row *row, size_t to_add)
 	add_node(row, node);
 }
 
-void 	add_to_table(t_lemin *lemin, char *r1, char *r2)
+void	add_to_table(t_lemin *lemin, char *r1, char *r2)
 {
 	size_t	r1_i;
 	size_t	r2_i;
@@ -31,6 +31,8 @@ void 	add_to_table(t_lemin *lemin, char *r1, char *r2)
 
 	r1_i = hash(lemin, r1, &flag1);
 	r2_i = hash(lemin, r2, &flag2);
+	if (r1_i >= lemin->len || r2_i >= lemin->len)
+		error("Input is invalid");
 	lemin->table[r1_i].flag = flag1;
 	lemin->table[r2_i].flag = flag2;
 	mod(&lemin->table[r1_i], r2_i);

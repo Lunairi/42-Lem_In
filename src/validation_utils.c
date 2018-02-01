@@ -12,7 +12,7 @@
 
 #include <lemin.h>
 
-void 	error(char	*str)
+void	error(char *str)
 {
 	ft_putendl(str);
 	exit(1);

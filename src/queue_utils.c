@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
-
 #include <lemin.h>
 
-struct s_queue *init(void)
+struct s_queue	*init(void)
 {
 	struct s_queue	*new;
 
@@ -24,9 +22,8 @@ struct s_queue *init(void)
 	return (new);
 }
 
-void enqueue(struct s_queue *queue, size_t num)
+void			enqueue(struct s_queue *queue, size_t num)
 {
-
 	struct s_node	*new;
 
 	new = (struct s_node *)malloc(sizeof(struct s_node));
@@ -34,29 +31,19 @@ void enqueue(struct s_queue *queue, size_t num)
 	new->next = NULL;
 	if (!queue->first)
 		queue->first = new;
-	//else if (!queue->last)
-    if (!queue->last)
+	if (!queue->last)
 		queue->last = new;
 	else
 	{
 		queue->last->next = new;
 		queue->last = queue->last->next;
 	}
-
-/*
-    struct s_node	*new;
-
-	new = (struct s_node *)malloc(sizeof(struct s_node));
-	new->num = num;
-    new->next = queue->first;
-    queue->first = new;
-    */
 }
 
-size_t dequeue(struct s_queue *queue)
+size_t			dequeue(struct s_queue *queue)
 {
 	struct s_node	*tmp;
-	size_t          tmp_num;
+	size_t			tmp_num;
 
 	if (!queue->first)
 		return (0);
@@ -70,14 +57,14 @@ size_t dequeue(struct s_queue *queue)
 	return (tmp_num);
 }
 
-size_t peek(struct s_queue *queue)
+size_t			peek(struct s_queue *queue)
 {
 	if (!queue->first)
 		return (0);
 	return (queue->first->num);
 }
 
-int isEmpty(struct s_queue *queue)
+int				is_empty(struct s_queue *queue)
 {
 	return (!queue->first && !queue->last);
 }

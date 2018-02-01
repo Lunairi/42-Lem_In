@@ -12,7 +12,7 @@
 
 #include <lemin.h>
 
-void 	add_node(t_row *row, t_node *node)
+void		add_node(t_row *row, t_node *node)
 {
 	t_node	*tmp;
 
@@ -25,4 +25,22 @@ void 	add_node(t_row *row, t_node *node)
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	tmp->next = node;
+}
+
+void		find_start_end(t_lemin *lemin)
+{
+	t_room *tmp;
+	size_t i;
+
+	i = 0;
+	tmp = lemin->rooms;
+	while (tmp)
+	{
+		if (tmp->flag == 1)
+			lemin->start = i;
+		else if (tmp->flag == 2)
+			lemin->end = i;
+		i++;
+		tmp = tmp->next;
+	}
 }

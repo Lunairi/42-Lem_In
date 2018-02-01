@@ -88,28 +88,83 @@ typedef struct			s_lemin
 	size_t				end;
 	size_t				len;
 	size_t				ants;
+	int					print;
+	int					count;
+	int					begin;
+	int					finish;
 }						t_lemin;
 
-void 	add_to_table(t_lemin *lemin, char *r1, char *r2);
-void 	error(char *str);
-t_room	*new_room(void);
-size_t	list_len(t_room *room);
-//void 	add_to_rooms(t_room *rooms, t_room room);
-void 	add_to_rooms(t_lemin *lemin, t_room *room);
-void 	add_node(t_row *row, t_node *node);
-//void 	add_node(t_node *list, t_node *node);
-size_t	hash(t_lemin *lemin, char *str, int *flag);
-//void 	print_table(t_row *table, size_t len);
-void 	print_table(t_lemin *lemin);
-void 	get_names(t_lemin *lemin);
-t_node	*bfs(t_lemin *lemin);
+/*
+** parse.c
+*/
+void					parse_room(char *str, t_room *room);
+void					parse_link(char *str, t_lemin *lemin);
+char					*parse_comment(char *str, t_room *room,
+							t_lemin *lemin);
+void					print_rooms(t_room *rooms);
 
-void enqueue(struct s_queue *queue, size_t num);
-size_t dequeue(struct s_queue *queue);
-int isEmpty(struct s_queue *queue);
-struct s_queue *init(void);
-size_t peek(struct s_queue *queue);
+/*
+** add_to_table.c
+*/
+void					mod(t_row *row, size_t to_add);
+void					add_to_table(t_lemin *lemin, char *r1, char *r2);
 
-void	move_ants(t_lemin *lemin, t_node *path);
+/*
+** ants.c
+*/
+void					move_ants(t_lemin *lemin, t_node *path);
+
+/*
+** bfs.c
+*/
+void					add_to_path(t_node **path, size_t start);
+int						not_in(size_t val, t_node *tmp);
+int						shuffle_queue(t_lemin *lemin, t_node *tmp,
+							t_queue *queue, t_node *path);
+t_node					*bfs(t_lemin *lemin, int i, size_t start);
+
+/*
+** get_names.c
+*/
+void					get_names(t_lemin *lemin);
+
+/*
+** hash.c
+*/
+size_t					hash(t_lemin *lemin, char *str, int *flag);
+
+/*
+** node_utils.c
+*/
+void					add_node(t_row *row, t_node *node);
+void					find_start_end(t_lemin *lemin);
+
+/*
+** print_table.c
+*/
+void					print_table(t_lemin *lemin);
+
+/*
+** queue_utils.c
+*/
+void					enqueue(struct s_queue *queue, size_t num);
+size_t					dequeue(struct s_queue *queue);
+size_t					peek(struct s_queue *queue);
+int						is_empty(struct s_queue *queue);
+struct s_queue			*init(void);
+
+/*
+** room_list_utils.c
+*/
+t_room					*new_room(void);
+size_t					list_len(t_room *room);
+void					add_to_rooms(t_lemin *lemin, t_room *room);
+
+/*
+** validation_utils.c
+*/
+void					error(char	*str);
+
+void					free_all(t_lemin *lemin, t_node *path);
 
 #endif

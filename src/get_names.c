@@ -12,20 +12,20 @@
 
 #include <lemin.h>
 
-void    get_names(t_lemin *lemin)
+void	get_names(t_lemin *lemin)
 {
-    //char    **out;
-    t_room  *tmp;
-    int     i;
+	t_room	*tmp;
+	int		i;
 
-    lemin->names = (char **)ft_memalloc(sizeof(char *) * lemin->len);
-    tmp = lemin->rooms;
-    i = 0;
-    while (i < lemin->len)
-    {
-        lemin->names[i] = tmp->name;
-        tmp = tmp->next;
-        ++i;
-    }
-    //return (out);
+	lemin->names = (char **)ft_memalloc(sizeof(char *) * lemin->len);
+	tmp = lemin->rooms;
+	i = 0;
+	if (!tmp)
+		error("Input is invalid");
+	while (i < lemin->len)
+	{
+		lemin->names[i] = tmp->name;
+		tmp = tmp->next;
+		++i;
+	}
 }

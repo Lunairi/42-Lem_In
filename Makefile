@@ -13,7 +13,8 @@
 NAME	= lem_in
 
 FILES	= main room_list_utils validation_utils add_to_table hash \
-			node_utils print_table get_names bfs queue_utils ants
+			node_utils print_table get_names bfs queue_utils ants parse \
+			free_all
 SRC		= $(patsubst %, %.c, $(FILES))
 OBJ 	= $(addprefix ./objects/, $(SRC:.c=.o))
 CFLAG	= -Wall -Wextra -Werror -g

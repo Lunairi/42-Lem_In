@@ -12,51 +12,57 @@
 
 #include "lemin.h"
 
-void	check_ants(t_lemin *lemin, t_node *tmp, int *i, int *q_ants)
+void		print_ant(t_lemin *lemin, t_node *tmp)
 {
-	int x;
+	if (lemin->print > 0)
+		write(1, " ", 1);
+	write(1, "L", 1);
+	ft_putnbr(tmp->ant);
+	write(1, "-", 1);
+	ft_putstr(lemin->names[tmp->num]);
+	++lemin->print;
+}
 
-	x = 0;
-	while (tmp) 
+void		check_ants(t_lemin *lemin, t_node *tmp, int *i)
+{
+	while (tmp && ++lemin->count >= 0)
 	{
 		if (!tmp->next && tmp->ant)
 			*i = *i + 1;
 		else if (tmp->ant == 0)
 		{
 			tmp->ant = *i + 1;
-			if (tmp->next && tmp->ant && x != 0)
-				printf("L%zu-%s", tmp->ant, lemin->names[tmp->num]);
-			break;
+			if (tmp->next && tmp->ant && lemin->count != 0)
+				print_ant(lemin, tmp);
+			break ;
 		}
 		else
 		{
-			if (tmp->ant < *q_ants)
+			if (tmp->ant < lemin->ants)
 			{
 				tmp->ant = tmp->ant + 1;
-				if (x != 0)
-					printf("L%zu-%s ", tmp->ant, lemin->names[tmp->num]);
+				if (lemin->count != 0)
+					print_ant(lemin, tmp);
 			}
 		}
 		tmp = tmp->next;
-		x++;
 	}
-	if (x != 0)
-		printf("\n");
 }
 
-void	move_ants(t_lemin *lemin, t_node *path)
+void		move_ants(t_lemin *lemin, t_node *path)
 {
-	t_node 	*tmp;
+	t_node	*tmp;
 	char	**nodes;
-	int 	q_ants;
 	int		i;
 
-	i  = 0;
+	i = 0;
 	tmp = path;
-	q_ants = lemin->ants;
 	while (i != lemin->ants)
 	{
-		check_ants(lemin, tmp, &i, &q_ants);
+		lemin->count = -1;
+		lemin->print = 0;
+		check_ants(lemin, tmp, &i);
+		if (lemin->print > 0)
+			write(1, "\n", 1);
 	}
 }
-
