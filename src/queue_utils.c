@@ -19,7 +19,8 @@ void enqueue(struct s_queue *queue, size_t num)
 	new->next = NULL;
 	if (!queue->first)
 		queue->first = new;
-	if (!queue->last)
+	//else if (!queue->last)
+    if (!queue->last)
 		queue->last = new;
 	else
 	{
