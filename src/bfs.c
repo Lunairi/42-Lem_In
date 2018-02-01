@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 14:13:54 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/31 18:08:20 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 18:16:25 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ t_node	*bfs(t_lemin *lemin)
         while (tmp_path) {
             tmp_path = tmp_path->next;
         }
-        DBG_INT("Start: ", start);
-        DBG_INT("End: ", lemin->end);
-        if (start == lemin->end)
-            break;
+        //if (start == lemin->end)
+        //    break;
         tmp = lemin->table[start].links;
         while (tmp)
         {

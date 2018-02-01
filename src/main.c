@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/31 18:00:23 by anazar           ###   ########.fr       */
+/*   Updated: 2018/01/31 18:15:05 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,7 @@ int			main(void)
 	print_table(&lemin);
 	t_node *path = bfs(&lemin);
 	while (path) {
-		ft_putnbr(path->num);
-		ft_putchar('\n');
+		ft_putendl(lemin.names[path->num]);
 		path = path->next;
 	}
 	return (0);
