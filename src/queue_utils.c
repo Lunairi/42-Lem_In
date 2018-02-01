@@ -12,6 +12,7 @@ struct s_queue *init(void)
 
 void enqueue(struct s_queue *queue, size_t num)
 {
+
 	struct s_node	*new;
 
 	new = (struct s_node *)malloc(sizeof(struct s_node));
@@ -27,6 +28,15 @@ void enqueue(struct s_queue *queue, size_t num)
 		queue->last->next = new;
 		queue->last = queue->last->next;
 	}
+
+/*
+    struct s_node	*new;
+
+	new = (struct s_node *)malloc(sizeof(struct s_node));
+	new->num = num;
+    new->next = queue->first;
+    queue->first = new;
+    */
 }
 
 size_t dequeue(struct s_queue *queue)

@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/31 17:27:58 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 00:39:04 by anazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ void enqueue(struct s_queue *queue, size_t num);
 size_t dequeue(struct s_queue *queue);
 int isEmpty(struct s_queue *queue);
 struct s_queue *init(void);
+size_t peek(struct s_queue *queue);
 
 #endif
