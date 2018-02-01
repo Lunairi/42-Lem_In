@@ -45,6 +45,7 @@ typedef struct			s_room_info
 typedef struct			s_node
 {
 	size_t				num;
+	size_t				ant;
 	struct s_node		*next;
 }						t_node;
 
@@ -86,6 +87,7 @@ typedef struct			s_lemin
 	size_t				start;
 	size_t				end;
 	size_t				len;
+	size_t				ants;
 }						t_lemin;
 
 void 	add_to_table(t_lemin *lemin, char *r1, char *r2);
@@ -107,5 +109,7 @@ size_t dequeue(struct s_queue *queue);
 int isEmpty(struct s_queue *queue);
 struct s_queue *init(void);
 size_t peek(struct s_queue *queue);
+
+void	move_ants(t_lemin *lemin, t_node *path);
 
 #endif

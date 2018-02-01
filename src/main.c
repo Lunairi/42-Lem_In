@@ -119,13 +119,13 @@ void	find_start_end(t_lemin *lemin)
 int			main(void)
 {
 	char		*str;
-	int			n_ants;
+	// int			n_ants;
 	t_lemin		lemin;
 	t_room		*room;
 
 	lemin = init_lemin();
-	n_ants = validate_ants();
-	if (n_ants == -1)
+	lemin.ants = validate_ants();
+	if (lemin.ants == -1)
 		error("Invalid number. Please provide a valid number of ants");
 	while (get_next_line(0, &str))
 	{
@@ -155,11 +155,12 @@ int			main(void)
 		ft_strdel(&str);
 	}
 	find_start_end(&lemin);
-	print_table(&lemin);
+	// print_table(&lemin);
 	t_node *path = bfs(&lemin);
-	while (path) {
-		ft_putendl(lemin.names[path->num]);
-		path = path->next;
-	}
+	// while (path) {
+	// 	ft_putendl(lemin.names[path->num]);
+	// 	path = path->next;
+	// }
+	move_ants(&lemin, path);
 	return (0);
 }
