@@ -64,20 +64,6 @@ typedef struct			s_row
 	t_queue				*ants;
 }						t_row;
 
-typedef struct			s_visual
-{
-	void				*mlx;
-	void				*win;
-	void				*img;
-	int					*pix;
-	int					bits;
-	int					s_line;
-	int					endian;
-	int					zoom;
-	int					x;
-	int					y;
-}						t_visual;
-
 typedef struct			s_lemin
 {
 	t_room				*rooms;
