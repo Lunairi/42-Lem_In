@@ -1,14 +1,14 @@
-echo "Penis1"
-./lem_in < ./test/penis1
-echo "\nPenis2"
-./lem_in < ./test/penis2
-echo "\nPenis3"
-./lem_in < ./test/penis3
-echo "\nPenis4"
-./lem_in < ./test/penis4
-echo "\nPenis5"
-./lem_in < ./test/penis5
-echo "\nPenis6"
-./lem_in < ./test/penis6
-echo "\nPenis7"
-./lem_in < ./test/penis7
+echo "test1"
+./lem_in < ./test/test1
+echo "\ntest2"
+./lem_in < ./test/test2
+echo "\ntest3"
+./lem_in < ./test/test3
+echo "\ntest4"
+./lem_in < ./test/test4
+echo "\ntest5"
+./lem_in < ./test/test5
+echo "\ntest6"
+./lem_in < ./test/test6
+echo "\ntest7"
+./lem_in < ./test/test7

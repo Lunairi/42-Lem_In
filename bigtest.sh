@@ -1,5 +1,5 @@
-echo "Penis8"
-./lem_in < ./test/penis8
-echo "\nPenis9"
-./lem_in < ./test/penis9
+echo "test8"
+./lem_in < ./test/test8
+echo "\ntest9"
+./lem_in < ./test/test9
 
