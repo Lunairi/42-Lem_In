@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/31 18:15:05 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 21:12:12 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void		parse_room(char *str, t_room *room)
 	char		*x;
 	char		*y;
 
+	if (str[0] == 'L' || ft_is_in('-', str))
+		error("Input is invalid");
 	if ((x = ft_strchr(str, ' ')))
 	{
 		if ((y = ft_strchr(x + 1, ' ')))
@@ -61,7 +63,8 @@ char		*parse_comment(char *str, t_room *room, t_lemin *lemin)
 			}
 		}
 		ft_strdel(&str);
-		get_next_line(0, &str);
+		if (get_next_line(0, &str) <= 0)
+			return (NULL);
 		if (room->flag >= 1 && !ft_general_validate("%s %d %d", str))
 			error("Input is invalid");
 	}

@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/01/31 18:15:05 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 21:27:51 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		setup_room(t_lemin *lemin, char *str, int flag)
 	while (get_next_line(0, &str))
 	{
 		room = new_room();
-		if (ft_general_validate("#%s", str))
+		while (str[0] == '#')
 			str = parse_comment(str, room, lemin);
 		if (ft_general_validate("%s %d %d", str))
 			parse_room(str, room);
@@ -94,9 +94,9 @@ int			main(void)
 	setup_room(&lemin, str, 0);
 	while (get_next_line(0, &str))
 	{
-		if (ft_general_validate("#%s", str))
+		while (str && str[0] == '#')
 			str = parse_comment(str, &room, &lemin);
-		if (ft_general_validate("%s-%s", str))
+		if (str && ft_general_validate("%s-%s", str))
 			parse_link(str, &lemin);
 		ft_strdel(&str);
 	}
