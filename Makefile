@@ -17,10 +17,10 @@ FILES	= main room_list_utils validation_utils add_to_table hash \
 			free_all
 SRC		= $(patsubst %, %.c, $(FILES))
 OBJ 	= $(addprefix ./objects/, $(SRC:.c=.o))
-CFLAG	= -Wall -Wextra -Werror -g
-LFLAG	= -L minilibx ./libft/libft.a -lmlx
-FFLAG	= -framework OpenGL -framework AppKit
-IFLAG	= -I minilibx -I libft/includes -I includes -g
+CFLAGS	= -Wall -Wextra -Werror -g
+LFLAGS	= -L minilibx ./libft/libft.a -lmlx
+FFLAGS	= -framework OpenGL -framework AppKit
+IFLAGS	= -I minilibx -I libft/includes -I includes
 
 .SILENT:
 
@@ -28,12 +28,12 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	gcc $(CFLAG) $(LFLAG) $(FFLAG) -L minilibx -lmlx -L libft -lft -I libft/includes -I includes $^ -o $(NAME)
+	gcc $(CFLAGS) $(LFLAGS) $(FFLAGS) -L minilibx -lmlx -L libft -lft -I libft/includes -I includes $^ -o $(NAME)
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "Created lem_in"
 
 ./objects/%.o: ./src/%.c
 	mkdir -p objects
-	gcc $(IFLAG) -c $< -o $@
+	gcc $(IFLAGS) -c $< -o $@
 
 clean:
 	make fclean -C libft/

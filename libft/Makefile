@@ -6,7 +6,7 @@
 #    By: anazar <anazar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/05 10:07:33 by anazar            #+#    #+#              #
-#    Updated: 2018/01/30 15:34:16 by anazar           ###   ########.fr        #
+#    Updated: 2018/02/01 16:40:31 by mlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MAINSRC = tst/main.c
 MAINOBJ = main.o
 TESTOUT = libtest
 LIB = ar rc
-FLAGS = -Wall -Werror -Wextra -I./includes/
+FLAGS = -Wall -Werror -Wextra -I./includes/ -g
 SRCS = $(patsubst %, %.c, $(FILES))
 OBJS = $(patsubst %, %.o, $(FILES))
 

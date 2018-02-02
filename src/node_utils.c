@@ -12,6 +12,17 @@
 
 #include <lemin.h>
 
+int			not_in(size_t val, t_node *tmp)
+{
+	while (tmp)
+	{
+		if (val == tmp->num)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 void		add_node(t_row *row, t_node *node)
 {
 	t_node	*tmp;

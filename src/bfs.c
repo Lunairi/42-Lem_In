@@ -31,17 +31,6 @@ void	add_to_path(t_node **path, size_t start)
 	tmp->next = node;
 }
 
-int		not_in(size_t val, t_node *tmp)
-{
-	while (tmp)
-	{
-		if (val == tmp->num)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
 int		shuffle_queue(t_lemin *lemin, t_node *tmp, t_queue *queue, t_node *path)
 {
 	while (tmp)
@@ -76,7 +65,15 @@ int		valid_path(t_node *path, size_t start, size_t end)
 	return (1);
 }
 
-t_node	*bfs(t_lemin *lemin, int i, size_t start)
+t_node	*ret(t_queue *queue, t_node *path)
+{
+	while (!is_empty(queue))
+		dequeue(queue);
+	free(queue);
+	return (path);
+}
+
+t_node	*bfs(t_lemin *lemin, size_t start)
 {
 	t_node	*path;
 	t_node	*tmp;
@@ -96,11 +93,11 @@ t_node	*bfs(t_lemin *lemin, int i, size_t start)
 		while (tmp_path)
 			tmp_path = tmp_path->next;
 		tmp = lemin->table[start].links;
-		i = shuffle_queue(lemin, tmp, queue, path);
-		if (i == 1)
-			return (path);
+		if (shuffle_queue(lemin, tmp, queue, path))
+			return (ret(queue, path));
 	}
 	if (!valid_path(path, lemin->start, lemin->end))
 		error("Input is invalid");
+	free(queue);
 	return (path);
 }

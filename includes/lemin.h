@@ -61,7 +61,6 @@ typedef struct			s_row
 	int					checked;
 	int					flag;
 	t_node				*links;
-	t_queue				*ants;
 }						t_row;
 
 typedef struct			s_lemin
@@ -69,7 +68,6 @@ typedef struct			s_lemin
 	t_room				*rooms;
 	char				**names;
 	t_row				*table;
-	t_visual			vis;
 	size_t				start;
 	size_t				end;
 	size_t				len;
@@ -107,7 +105,7 @@ void					add_to_path(t_node **path, size_t start);
 int						not_in(size_t val, t_node *tmp);
 int						shuffle_queue(t_lemin *lemin, t_node *tmp,
 							t_queue *queue, t_node *path);
-t_node					*bfs(t_lemin *lemin, int i, size_t start);
+t_node					*bfs(t_lemin *lemin, size_t start);
 
 /*
 ** get_names.c
@@ -145,6 +143,7 @@ struct s_queue			*init(void);
 t_room					*new_room(void);
 size_t					list_len(t_room *room);
 void					add_to_rooms(t_lemin *lemin, t_room *room);
+int						not_in(size_t val, t_node *tmp);
 
 /*
 ** validation_utils.c

@@ -45,6 +45,15 @@ t_lemin		init_lemin(void)
 	return (l);
 }
 
+void		switch_link(t_lemin *lemin, char *str)
+{
+	lemin->len = list_len(lemin->rooms);
+	lemin->table = (t_row *)ft_memalloc(lemin->len * sizeof(t_row));
+	get_names(lemin);
+	parse_link(str, lemin);
+	ft_strdel(&str);
+}
+
 void		setup_room(t_lemin *lemin, char *str, int flag)
 {
 	t_room	*room;
@@ -58,11 +67,7 @@ void		setup_room(t_lemin *lemin, char *str, int flag)
 			parse_room(str, room);
 		else if (ft_general_validate("%s-%s", str) && ++flag)
 		{
-			lemin->len = list_len(lemin->rooms);
-			lemin->table = (t_row *)ft_memalloc(lemin->len * sizeof(t_row));
-			get_names(lemin);
-			parse_link(str, lemin);
-			ft_strdel(&str);
+			switch_link(lemin, str);
 			break ;
 		}
 		else
@@ -70,6 +75,7 @@ void		setup_room(t_lemin *lemin, char *str, int flag)
 		add_to_rooms(lemin, room);
 		ft_strdel(&str);
 	}
+	free(room);
 	if (lemin->begin != 1 || lemin->finish != 1 || !flag)
 		error("Input is invalid");
 }
@@ -97,12 +103,8 @@ int			main(void)
 	if (lemin.begin != 1 || lemin.finish != 1)
 		error("Input is invalid");
 	find_start_end(&lemin);
-	path = bfs(&lemin, 0, 0);
+	path = bfs(&lemin, 0);
 	move_ants(&lemin, path);
 	free_all(&lemin, path);
-	while (1)
-	{
-
-	}
 	return (0);
 }

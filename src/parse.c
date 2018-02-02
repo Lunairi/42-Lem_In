@@ -36,7 +36,10 @@ void		parse_link(char *str, t_lemin *lemin)
 	if ((r2 = ft_strchr(str, '-')))
 	{
 		r1 = ft_strsub(str, 0, r2 - str);
+		r2 = ft_strdup(ft_strchr(str, '-'));
 		add_to_table(lemin, r1, r2 + 1);
+		free(r1);
+		free(r2);
 	}
 }
 
