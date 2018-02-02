@@ -1,3 +1,8 @@
+# 42-Lem_in
+Graph traversal algorithm project where we have to move ants through nodes in the most efficient way. We used a breadth first traversal method to do this.
+
+Partner Aneesh Nazar: https://github.com/aneeshnazar
+
 # Algorithm
 
     1) Read + Parse room information
