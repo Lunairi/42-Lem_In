@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 17:45:00 by anazar            #+#    #+#             */
-/*   Updated: 2018/02/01 00:39:04 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 21:32:21 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,7 @@
 # include <string.h>
 # include <pthread.h>
 
-# include "mlx.h"
 # include "libft.h"
-
-# define ZOOM_OUT 69
-# define ZOOM_IN 78
-# define MOVE_LEFT 86
-# define MOVE_RIGHT 88
-# define MOVE_DOWN 84
-# define MOVE_UP 91
-# define RESET_MLX 87
-# define EXIT_MLX 53
 
 typedef struct			s_room_info
 {
