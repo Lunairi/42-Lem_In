@@ -1,12 +1,12 @@
 3
-dick 5 0
+dice 5 0
 ##start
 face 1 2
 ##end
-balls 9 2
-ass 5 4
-face-dick
-face-ass
-dick-balls
-ass-balls
-dick-ass
+billiards 9 2
+donkey 5 4
+face-dice
+face-donkey
+dice-billiards
+donkey-billiards
+dice-donkey
