@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 11:51:28 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/30 16:14:36 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 22:36:01 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	valid_number(char *str, char c, int *amt)
 		return (0);
 	while (*str != c)
 	{
-		if (!*str)
+		if (!*str || !ft_isdigit(*str))
 			return (0);
 		++str;
 	}
@@ -81,5 +81,7 @@ int			ft_general_validate(char *format, char *str)
 			++str;
 		}
 	}
+	if (*format || *str)
+		return (0);
 	return (1);
 }

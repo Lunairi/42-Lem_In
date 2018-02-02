@@ -6,7 +6,7 @@
 /*   By: anazar <anazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/01 15:10:25 by anazar            #+#    #+#             */
-/*   Updated: 2018/01/30 18:24:38 by anazar           ###   ########.fr       */
+/*   Updated: 2018/02/01 21:47:06 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		find_start_end(t_lemin *lemin)
 	size_t i;
 
 	i = 0;
+	ft_putendl("");
 	tmp = lemin->rooms;
 	while (tmp)
 	{

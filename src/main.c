@@ -6,7 +6,7 @@
 /*   By: mlu <mlu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 20:59:44 by mlu               #+#    #+#             */
-/*   Updated: 2018/02/01 21:27:51 by mlu              ###   ########.fr       */
+/*   Updated: 2018/02/01 22:37:44 by mlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ int			validate_ants(void)
 	int			ants;
 
 	get_next_line(0, &str);
+	ft_putendl(str);
 	if (!ft_general_validate("%d", str) || str[0] == '-')
-		return (0);
+		error("Input is invalid");
 	ants = ft_atoi(str);
 	ft_strdel(&str);
+	if (ants == 0)
+		error("Input is invalid");
 	return (ants);
 }
 
@@ -89,8 +92,6 @@ int			main(void)
 
 	lemin = init_lemin();
 	lemin.ants = validate_ants();
-	if (lemin.ants == 0)
-		error("Input is invalid");
 	setup_room(&lemin, str, 0);
 	while (get_next_line(0, &str))
 	{
@@ -98,6 +99,8 @@ int			main(void)
 			str = parse_comment(str, &room, &lemin);
 		if (str && ft_general_validate("%s-%s", str))
 			parse_link(str, &lemin);
+		else
+			break ;
 		ft_strdel(&str);
 	}
 	if (lemin.begin != 1 || lemin.finish != 1)
